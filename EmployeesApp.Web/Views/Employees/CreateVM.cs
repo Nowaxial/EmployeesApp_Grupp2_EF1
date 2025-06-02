@@ -18,5 +18,9 @@ namespace EmployeesApp.Web.Views.Employees
         [Required(ErrorMessage = "You must answer the question")]
         [Range(4, 4, ErrorMessage = "Wrong answer")]
         public required int BotCheck { get; set; }
+        [Display(Name = "Salary")]
+        [Required(ErrorMessage = "You must specify salary")]
+        [DataType(DataType.Currency)]
+        public decimal Salary { get; set; } = 0.0m; // Default value for Salary
     }
 }

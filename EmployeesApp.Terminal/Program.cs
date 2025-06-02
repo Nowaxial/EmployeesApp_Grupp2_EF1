@@ -7,7 +7,12 @@ using Microsoft.EntityFrameworkCore;
 namespace EmployeesApp.Terminal;
 internal static class Program
 {
-    static readonly EmployeeService employeeService = new(new EmployeeRepository(new ApplicationContext(new DbContextOptions<ApplicationContext>())));
+
+    //DbContext<ApplicationContext> context = new DbContextOptions<ApplicationContext>();
+    static DbContextOptions<ApplicationContext> options = new DbContextOptionsBuilder<ApplicationContext>()
+        .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=EmployeesAppDB;Trusted_Connection=True;")
+        .Options;
+    static readonly EmployeeService employeeService = new(new EmployeeRepository(new ApplicationContext(options)));
 
     static void Main(string[] args)
     {
@@ -30,7 +35,7 @@ internal static class Program
         try
         {
             employee = employeeService.GetById(employeeID);
-            Console.WriteLine($"{employee?.Name}: {employee?.Email}");
+            Console.WriteLine($"{employee?.Name}: {employee?.Email}: {employee?.Salary} ");
             Console.WriteLine("------------------------------");
         }
         catch (ArgumentException e)
