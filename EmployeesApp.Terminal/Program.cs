@@ -1,11 +1,13 @@
 ﻿using EmployeesApp.Application.Employees.Services;
 using EmployeesApp.Domain.Entities;
+using EmployeesApp.Infrastructure.Persistance;
 using EmployeesApp.Infrastructure.Persistance.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeesApp.Terminal;
-internal class Program
+internal static class Program
 {
-    static readonly EmployeeService employeeService = new(new EmployeeRepository());
+    static readonly EmployeeService employeeService = new(new EmployeeRepository(new ApplicationContext(new DbContextOptions<ApplicationContext>())));
 
     static void Main(string[] args)
     {
