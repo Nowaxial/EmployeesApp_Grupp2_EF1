@@ -13,7 +13,7 @@ namespace EmployeesApp.Infrastructure.Persistance
 : DbContext(options)
     {
         // Exponerar våra entiteter via properties av typen DbSet<T>
-        public DbSet<Employee> Customers { get; set; } = null!;
+        public DbSet<Employee> Employees { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
